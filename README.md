@@ -73,8 +73,6 @@
   </a>
 </div>
 
-###
-
 <img align="right" height="265" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/main/assets/cat.gif" />
 
 ###
