@@ -1,0 +1,10 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+# Visual Studio Code
+.vscode/
+# Vim
+*.swp
+*.swo
