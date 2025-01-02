@@ -72,16 +72,12 @@
     <img src="https://img.shields.io/static/v1?message=Twitter&logo=twitter&label=&color=1DA1F2&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="twitter logo" />
   </a>
 </div>
-
-<div align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake.svg">
-    <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg" alt="Snake animation" />
-  </picture>
-</div>
-
 <img align="right" height="265" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/main/assets/cat.gif" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake.svg">
+  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg" alt="Snake animation" align="left" width="60%" />
+</picture>
 
 ###
 
