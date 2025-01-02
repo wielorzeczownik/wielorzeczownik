@@ -73,11 +73,13 @@
   </a>
 </div>
 
-<picture align="left">
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake.svg">
-  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg" alt="Snake animation" />
-</picture>
+<div align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake.svg">
+    <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg" alt="Snake animation" />
+  </picture>
+</div>
 
 <img align="right" height="265" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/main/assets/cat.gif" />
 
