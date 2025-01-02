@@ -72,7 +72,7 @@
     <img src="https://img.shields.io/static/v1?message=Twitter&logo=twitter&label=&color=1DA1F2&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="twitter logo" />
   </a>
 </div>
-<img align="right" width="18%" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/main/assets/cat.gif" />
+<img align="right" width="16%" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/main/assets/cat.gif" />
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake.svg">
