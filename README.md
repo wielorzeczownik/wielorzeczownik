@@ -76,7 +76,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake.svg">
-  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg" alt="Snake animation" align="left" width="60%" />
+  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg" alt="Snake animation" align="left" width="55%" />
 </picture>
 
 ###
