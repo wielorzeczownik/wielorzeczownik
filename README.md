@@ -1,7 +1,7 @@
 # 👋 Hi, I'm **wielorzeczownik** – a maker of things 🔧
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/github-metrics.svg" alt="javascript" />
+  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/github-metrics.svg" alt="metrics" />
 </div>
 
 ## 🛠️ Technologies & Tools
