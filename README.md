@@ -1,23 +1,8 @@
 # 👋 Hi, I'm **wielorzeczownik** – a maker of things 🔧
 
----
-
-## 📊 GitHub Stats
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=wielorzeczownik&show_icons=true&count_private=true&theme=gotham&hide_border=true">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=wielorzeczownik&show_icons=true&count_private=true&hide_border=true">
-    <img src="https://github-readme-stats.vercel.app/api?username=wielorzeczownik&show_icons=true&count_private=true&theme=gotham&hide_border=true" height="160" />
-  </picture>
-  
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs?username=wielorzeczownik&layout=compact&theme=gotham&hide_border=true">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs?username=wielorzeczownik&layout=compact&hide_border=true">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs?username=wielorzeczownik&layout=compact&theme=gotham&hide_border=true" height="160" />
-  </picture>
+  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/github-metrics.svg" alt="javascript" />
 </div>
-
----
 
 ## 🛠️ Technologies & Tools
 
@@ -41,17 +26,6 @@
   <a href="https://getbootstrap.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width="30" height="30" alt="bootstrap" /></a>
   <a href="https://tailwindcss.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="30" height="30" alt="tailwind" /></a>
 </div>
-
----
-
-## 🌐 Connect with me
-<p align="center">
-  <a href="https://www.youtube.com/@wielorzeczownik"><img src="https://img.shields.io/badge/Youtube-FF0000?logo=youtube&logoColor=white&style=for-the-badge" /></a>
-  <a href="https://www.twitch.tv/wielorzeczownik"><img src="https://img.shields.io/badge/Twitch-9146FF?logo=twitch&logoColor=white&style=for-the-badge" /></a>
-  <a href="https://x.com/wielorzeczownik"><img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white&style=for-the-badge" /></a>
-</p>
-
----
 
 ## 🐍 Fun Stuff
 
