@@ -37,5 +37,8 @@ jobs:
           plugin_languages_sections: most-used
           plugin_languages_threshold: 0%
           plugin_languages_other: no
-          plugin_languages_limit: 999 
+          plugin_languages_limit: 999
+          plugin_languages_recent_days: 0
+          repositories_visibility: all
+          repositories_affiliations: owner, collaborator, organization_member
           repositories_forks: yes
