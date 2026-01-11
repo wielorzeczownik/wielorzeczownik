@@ -36,13 +36,3 @@
     <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg" alt="Snake animation" />
   </picture>
 </p>
-
-## 🏆 GitHub Trophies
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-trophy.vercel.app?username=wielorzeczownik&theme=dracula&no-bg=true&no-frame=true&margin-w=8&margin-h=8">
-    <source media="(prefers-color-scheme: light)" srcset="https://github-profile-trophy.vercel.app?username=wielorzeczownik&theme=light&no-bg=true&no-frame=true&margin-w=8&margin-h=8">
-    <img src="https://github-profile-trophy.vercel.app?username=wielorzeczownik&theme=dracula&no-bg=true&no-frame=true&margin-w=8&margin-h=8" />
-  </picture>
-</p>
