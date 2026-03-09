@@ -1,10 +1,32 @@
-# OS-specific files
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+target/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.swp
+*.swo
+
+# OS
 .DS_Store
 Thumbs.db
 
-# IDEs and editors
-# Visual Studio Code
-.vscode/
-# Vim
-*.swp
-*.swo
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+.cache/
+.parcel-cache/
