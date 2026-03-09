@@ -12,7 +12,7 @@
 
 <table border="0">
   <tr>
-    <td align="left" width="75%">
+    <td align="left" valign="top" width="75%">
       <p>
         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="30" height="30" alt="javascript" /></a>
         <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="30" height="30" alt="typescript" /></a>
@@ -34,7 +34,7 @@
         <a href="https://tailwindcss.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="30" height="30" alt="tailwind" /></a>
       </p>
     </td>
-    <td align="right" width="25%">
+    <td align="right" valign="top" width="25%">
       <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/assets/cat.gif" alt="cat" width="200" />
     </td>
   </tr>
