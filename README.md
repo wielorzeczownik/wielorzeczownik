@@ -10,7 +10,7 @@
 
 ## 🛠️ Technologies & Tools
 
-<table>
+<table border="0">
   <tr>
     <td align="left" width="75%">
       <p>
