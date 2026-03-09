@@ -3,7 +3,7 @@
 ---
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-metrics/github-metrics.svg" alt="metrics" />
+  <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/output-metrics/github-metrics.svg" alt="metrics" />
 </div>
 
 ---
