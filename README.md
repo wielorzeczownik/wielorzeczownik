@@ -29,7 +29,7 @@
     <a href="https://getbootstrap.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" width="30" height="30" alt="bootstrap" /></a>
     <a href="https://tailwindcss.com/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" width="30" height="30" alt="tailwind" /></a>
   </p>
-  <p align="left">
+  <p align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake-dark.svg">
       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-snk/snake.svg">
