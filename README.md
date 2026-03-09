@@ -1,4 +1,6 @@
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=wielorzeczownik&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=a%20maker%20of%20things%20%F0%9F%94%A7&descAlignY=55&descSize=18" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=header" />
+
+# 👋 Hi, I'm **wielorzeczownik** - a maker of things 🔧
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/output-metrics/github-metrics.svg" alt="metrics" />
