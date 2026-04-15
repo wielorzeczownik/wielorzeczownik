@@ -19,7 +19,7 @@ Full-stack developer building web applications from frontend to backend. Working
 
 <img align="right" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/assets/cat.gif" alt="cat" width="120" />
 
-![Tech stack](https://skillicons.dev/icons?i=js,ts,php,rust,cpp,react,vue,symfony,latex,postgres,docker,raspberrypi,bash,sass,bootstrap,tailwind)
+<img align="left" src="https://skillicons.dev/icons?i=js,ts,php,rust,cpp,react,vue,symfony,latex,postgres,docker,raspberrypi,bash,sass,bootstrap,tailwind" alt="Tech stack" />
 
 <br clear="both" />
 
