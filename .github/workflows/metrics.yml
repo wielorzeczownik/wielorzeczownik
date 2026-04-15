@@ -42,6 +42,7 @@ jobs:
           plugin_languages_other: no
           plugin_languages_recent_days: 0
           plugin_languages_recent_load: 999
+          plugin_fortune: yes
           repositories_affiliations: owner, collaborator, organization_member
           repositories_forks: yes
           filename: dist/github-metrics.svg
