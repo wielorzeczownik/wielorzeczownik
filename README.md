@@ -19,11 +19,7 @@ Full-stack developer building web applications from frontend to backend. Working
 
 <img align="right" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/assets/cat.gif" alt="cat" width="120" />
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=js,ts,php,rust,cpp,react,vue,symfony,postgres,docker,raspberrypi,latex,bash,sass,bootstrap,tailwind&amp;theme=dark">
-  <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=js,ts,php,rust,cpp,react,vue,symfony,postgres,docker,raspberrypi,latex,bash,sass,bootstrap,tailwind&amp;theme=light">
-  <img src="https://skillicons.dev/icons?i=js,ts,php,rust,cpp,react,vue,symfony,postgres,docker,raspberrypi,latex,bash,sass,bootstrap,tailwind&amp;theme=dark" alt="Tech stack" />
-</picture>
+![Tech stack](https://skillicons.dev/icons?i=js,ts,php,rust,cpp,react,vue,symfony,latex,postgres,docker,raspberrypi,bash,sass,bootstrap,tailwind)
 
 <br clear="both" />
 
