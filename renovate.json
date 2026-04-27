@@ -3,6 +3,7 @@
   "platformAutomerge": true,
   "automergeType": "pr",
   "semanticCommits": "enabled",
+  "minimumReleaseAge": "3 days",
   "packageRules": [
     {
       "matchUpdateTypes": [
@@ -10,6 +11,13 @@
         "patch"
       ],
       "automerge": true
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "minimumReleaseAge": "7 days",
+      "semanticCommitType": "ci"
     }
   ]
 }
