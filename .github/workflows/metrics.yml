@@ -12,9 +12,16 @@ on:
     paths:
       - .github/workflows/metrics.yml
 
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
 

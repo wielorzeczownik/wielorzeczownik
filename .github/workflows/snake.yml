@@ -12,12 +12,18 @@ on:
     paths:
       - .github/workflows/snake.yml
 
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   generate:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: write
 
     steps:
       - name: Generate snake.svg
@@ -27,7 +33,6 @@ jobs:
           outputs: |
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
-        
 
       - name: Push snake.svg to the output branch
         uses: crazy-max/ghaction-github-pages@v5.0.0
