@@ -1,4 +1,4 @@
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=header" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=header" alt="Header" />
 
 # 👋 Hi, I'm **wielorzeczownik** — a maker of things & Full-Stack Developer 🔧
 
@@ -17,7 +17,7 @@ Full-stack developer building web applications from frontend to backend. Working
 
 ## 🛠️ Technologies & Tools
 
-<img align="right" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/assets/cat.gif" alt="cat" width="15%" />
+<img align="right" src="https://raw.githubusercontent.com/wielorzeczownik/wielorzeczownik/refs/heads/main/assets/cat.gif" alt="cat" width="14%" />
 
 <img align="left" src="https://skillicons.dev/icons?i=js,ts,php,rust,cpp,react,vue,symfony,latex,postgres,docker,raspberrypi,bash,sass,bootstrap,tailwind" width="80%" alt="Tech stack" />
 
@@ -31,4 +31,4 @@ Full-stack developer building web applications from frontend to backend. Working
   </picture>
 </p>
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" alt="Footer" />
