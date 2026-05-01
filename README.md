@@ -1,6 +1,6 @@
 <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=header" alt="Header" />
 
-# 👋 Hi, I'm **wielorzeczownik** — a maker of things & Full-Stack Developer 🔧
+# 👋 Hi, I'm **wielorzeczownik** – a maker of things & Full-Stack Developer 🔧
 
 Full-stack developer building web applications from frontend to backend. Working mainly with **TypeScript**, **PHP** and **Rust**, using frameworks like React, Vue, Symfony and Phalcon. Also interested in embedded systems (Raspberry Pi, C++) and Docker-based environment automation.
 
