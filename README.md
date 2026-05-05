@@ -9,6 +9,7 @@ Full-stack developer building web applications from frontend to backend. Working
   <a href="https://twitch.tv/wielorzeczownik" target="_blank"><img src="https://img.shields.io/badge/Twitch-%239146FF.svg?style=for-the-badge&logo=twitch&logoColor=white" alt="Twitch" /></a>
   <a href="https://kick.com/wielorzeczownik" target="_blank"><img src="https://img.shields.io/badge/Kick-%2353FC18.svg?style=for-the-badge&logo=kick&logoColor=black" alt="Kick" /></a>
   <a href="https://tiktok.com/@wielorzeczownik" target="_blank"><img src="https://img.shields.io/badge/TikTok-%23000000.svg?style=for-the-badge&logo=tiktok&logoColor=white" alt="TikTok" /></a>
+  <a href="https://youtube.com/@wielorzeczownik" target="_blank"><img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube" /></a>
 </p>
 
 <div align="center">
