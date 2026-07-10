@@ -30,3 +30,11 @@ npm-debug.log*
 # Cache
 .cache/
 .parcel-cache/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Generated cards
+neofetch-*.svg

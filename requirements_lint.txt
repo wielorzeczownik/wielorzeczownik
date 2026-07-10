@@ -1,0 +1,2 @@
+-r requirements_prod.txt
+ruff==0.15.20
