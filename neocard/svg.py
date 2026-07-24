@@ -61,7 +61,9 @@ def _font_face(charset: str) -> str:
         desubroutinize=True,
         hinting=False,
         layout_features=[],
-        name_IDs=[],
+        # OFL 1.1 wants the notice to travel with every copy, and each
+        # card embeds one: keep copyright (0), license (13), URL (14)
+        name_IDs=[0, 13, 14],
         glyph_names=False,
         legacy_kern=False,
         notdef_outline=False,

@@ -6,6 +6,8 @@ build-backend = "setuptools.build_meta"
 name = "neocard"
 version = "0.1.0"
 requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE.md", "neocard/assets/OFL.txt"]
 dependencies = [
   "Pillow",
   "svgwrite",
@@ -22,7 +24,7 @@ neocard = "neocard.cli:main"
 packages = ["neocard"]
 
 [tool.setuptools.package-data]
-neocard = ["assets/*.woff2"]
+neocard = ["assets/*.woff2", "assets/OFL.txt"]
 
 [tool.ruff]
 line-length = 80
