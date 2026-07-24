@@ -32,11 +32,16 @@ class GitHubClient:
             data: bytes = response.read()
             return data
 
-    def _search_count(self, query: str) -> int:
+    def _search_count(self, endpoint: str, query: str) -> int:
         try:
-            return self.gh.search_issues(query=query).totalCount
+            _, data = self.gh.requester.requestJsonAndCheck(
+                "GET",
+                endpoint,
+                parameters={"q": query, "per_page": 1},
+            )
         except GithubException:  # rate limit / transient API failure
             return 0
+        return int(data.get("total_count", 0))
 
     def fetch_profile(self) -> Profile:
         """Gather everything the card needs from the GitHub API."""
@@ -48,12 +53,6 @@ class GitHubClient:
                 if name == "url":  # PyGithub injects the endpoint URL as a key
                     continue
                 lang_bytes[name] = lang_bytes.get(name, 0) + int(size)
-        try:
-            commits = self.gh.search_commits(
-                query=f"author:{self.user}"
-            ).totalCount
-        except GithubException:
-            commits = 0
         return Profile(
             user=self.user,
             created_at=user.created_at.strftime(_CREATED_AT_FMT),
@@ -61,9 +60,15 @@ class GitHubClient:
             followers=user.followers,
             following=user.following,
             stars=sum(repo.stargazers_count for repo in repos),
-            commits=commits,
-            prs=self._search_count(f"author:{self.user} type:pr"),
-            issues=self._search_count(f"author:{self.user} type:issue"),
+            commits=self._search_count(
+                "/search/commits", f"author:{self.user}"
+            ),
+            prs=self._search_count(
+                "/search/issues", f"author:{self.user} type:pr"
+            ),
+            issues=self._search_count(
+                "/search/issues", f"author:{self.user} type:issue"
+            ),
             avatar=self._download(user.avatar_url),
             company=(user.company or "").lstrip("@") or None,
             bio=user.bio or None,
