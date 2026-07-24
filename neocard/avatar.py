@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, cast
 
 from PIL import Image, ImageEnhance, ImageOps
 
-from .colors import clamp_lightness
+from .colors import clamp_lightness, hex_to_rgb
 
 if TYPE_CHECKING:
     from .models import Theme
@@ -36,3 +36,12 @@ def build_pixels(avatar: bytes, theme: Theme, cols: int, rows: int) -> Grid:
             )
         grid.append(row)
     return grid
+
+
+def encode_png(grid: Grid) -> bytes:
+    """Pack the color grid into a PNG, one image pixel per cell"""
+    img = Image.new("RGB", (len(grid[0]), len(grid)))
+    img.putdata([hex_to_rgb(color) for row in grid for color in row])
+    buffer = io.BytesIO()
+    img.save(buffer, "PNG", optimize=True)
+    return buffer.getvalue()

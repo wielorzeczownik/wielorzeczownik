@@ -13,7 +13,7 @@ from fontTools.ttLib import TTFont
 from svgwrite.animate import Animate
 from svgwrite.text import TSpan
 
-from .avatar import Grid, build_pixels
+from .avatar import Grid, build_pixels, encode_png
 from .constants import (
     CANVAS_WIDTH,
     FONT_SIZE,
@@ -57,7 +57,15 @@ def _source_font() -> bytes:
 def _font_face(charset: str) -> str:
     """Embed JetBrains Mono Nerd Font, subset to charset, as a base64 face"""
     font = TTFont(io.BytesIO(_source_font()))
-    options = subset.Options(desubroutinize=True)
+    options = subset.Options(
+        desubroutinize=True,
+        hinting=False,
+        layout_features=[],
+        name_IDs=[],
+        glyph_names=False,
+        legacy_kern=False,
+        notdef_outline=False,
+    )
     options.flavor = "woff2"
     subsetter = subset.Subsetter(options=options)
     subsetter.populate(unicodes=[ord(c) for c in charset])
@@ -85,29 +93,19 @@ def _stylesheet(theme: Theme, charset: str) -> str:
         f"{_font_face(charset)}"
         f".key{{fill:{theme.key};}}.value{{fill:{theme.value};}}"
         f".cc{{fill:{theme.cc};}}text,tspan{{white-space:pre;}}"
+        # the portrait is upscaled 7x and must not be smoothed
+        "image{image-rendering:pixelated;image-rendering:crisp-edges;}"
     )
 
 
-def _avatar_group(dwg: Drawing, grid: Grid, top: int) -> object:
-    """Emit the pixel grid as rects, run-length-merging equal colors per row"""
-    group = dwg.g(shape_rendering="crispEdges")
-    for j, row in enumerate(grid):
-        y = top + j * PIXEL_SIZE
-        x = 0
-        while x < len(row):
-            color = row[x]
-            run = 1
-            while x + run < len(row) and row[x + run] == color:
-                run += 1
-            group.add(
-                dwg.rect(
-                    (PIXEL_X + x * PIXEL_SIZE, y),
-                    (run * PIXEL_SIZE, PIXEL_SIZE),
-                    fill=color,
-                )
-            )
-            x += run
-    return group
+def _portrait(dwg: Drawing, grid: Grid, top: int) -> object:
+    """Embed the pixel grid as a single upscaled PNG"""
+    encoded = base64.b64encode(encode_png(grid)).decode("ascii")
+    return dwg.image(
+        f"data:image/png;base64,{encoded}",
+        insert=(PIXEL_X, top),
+        size=(len(grid[0]) * PIXEL_SIZE, len(grid) * PIXEL_SIZE),
+    )
 
 
 def _blinking_cursor() -> TSpan:
@@ -164,7 +162,7 @@ def render(profile: Profile, theme: Theme, settings: Settings) -> str:
             (0, 0), (f"{CANVAS_WIDTH}px", f"{height}px"), fill=theme.bg, rx=15
         )
     )
-    dwg.add(_avatar_group(dwg, grid, PORTRAIT_TOP))
+    dwg.add(_portrait(dwg, grid, PORTRAIT_TOP))
     dwg.add(panel)
     for element in footer:
         dwg.add(element)
