@@ -15,6 +15,7 @@ LEGEND_LANGS = 3  # languages named under the bar before Other takes over
 PIXEL_COLS = 48  # avatar width in cells
 PIXEL_SIZE = 7  # px per cell
 PIXEL_X = 16  # left offset of the portrait
+PORTRAIT_COLORS = 256  # palette the portrait is snapped to before encoding
 
 # GitHub Linguist language colors
 LANG_COLORS: dict[str, str] = {

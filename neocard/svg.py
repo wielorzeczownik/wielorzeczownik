@@ -13,7 +13,7 @@ from fontTools.ttLib import TTFont
 from svgwrite.animate import Animate
 from svgwrite.text import TSpan
 
-from .avatar import Grid, build_pixels, encode_png
+from .avatar import Grid, build_pixels, encode_portrait
 from .constants import (
     CANVAS_WIDTH,
     FONT_SIZE,
@@ -99,10 +99,10 @@ def _stylesheet(theme: Theme, charset: str) -> str:
 
 
 def _portrait(dwg: Drawing, grid: Grid, top: int) -> object:
-    """Embed the pixel grid as a single upscaled PNG"""
-    encoded = base64.b64encode(encode_png(grid)).decode("ascii")
+    """Embed the pixel grid as a single upscaled image"""
+    encoded = base64.b64encode(encode_portrait(grid)).decode("ascii")
     return dwg.image(
-        f"data:image/png;base64,{encoded}",
+        f"data:image/webp;base64,{encoded}",
         insert=(PIXEL_X, top),
         size=(len(grid[0]) * PIXEL_SIZE, len(grid) * PIXEL_SIZE),
     )

@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING, cast
 from PIL import Image, ImageEnhance, ImageOps
 
 from .colors import clamp_lightness, hex_to_rgb
+from .constants import PORTRAIT_COLORS
 
 if TYPE_CHECKING:
     from .models import Theme
@@ -38,10 +39,15 @@ def build_pixels(avatar: bytes, theme: Theme, cols: int, rows: int) -> Grid:
     return grid
 
 
-def encode_png(grid: Grid) -> bytes:
-    """Pack the color grid into a PNG, one image pixel per cell"""
+def encode_portrait(grid: Grid) -> bytes:
+    """Pack the color grid into a lossless WebP, one image pixel per cell"""
     img = Image.new("RGB", (len(grid[0]), len(grid)))
     img.putdata([hex_to_rgb(color) for row in grid for color in row])
+    snapped = img.quantize(
+        colors=PORTRAIT_COLORS,
+        method=Image.Quantize.FASTOCTREE,
+        dither=Image.Dither.NONE,
+    ).convert("RGB")
     buffer = io.BytesIO()
-    img.save(buffer, "PNG", optimize=True)
+    snapped.save(buffer, "WEBP", lossless=True, quality=100, method=6)
     return buffer.getvalue()
