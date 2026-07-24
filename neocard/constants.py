@@ -9,6 +9,7 @@ FONT_SIZE = 16
 COLUMN_X = 380  # left edge of the info column
 LEADER = 30  # character column where values line up
 BAR_CELLS = 66  # language-usage bar width, spans the info column
+LEGEND_LANGS = 3  # languages named under the bar before Other takes over
 
 # Avatar pixel-art
 PIXEL_COLS = 48  # avatar width in cells

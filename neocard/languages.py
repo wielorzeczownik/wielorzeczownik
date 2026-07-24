@@ -16,9 +16,7 @@ class Segment:
     percent: int
 
 
-def _ranked(lang_bytes: dict[str, int], sort: str) -> list[tuple[str, int]]:
-    if sort == "name":
-        return sorted(lang_bytes.items(), key=lambda kv: kv[0].lower())
+def _by_size(lang_bytes: dict[str, int]) -> list[tuple[str, int]]:
     return sorted(lang_bytes.items(), key=lambda kv: -kv[1])
 
 
@@ -28,11 +26,16 @@ def split_languages(
     markup_limit: int = 4,
     sort: str = "size",
 ) -> tuple[list[str], list[str]]:
-    """Order languages, then split into programming vs markup lists"""
-    ranked = [name for name, _ in _ranked(lang_bytes, sort)]
-    programming = [n for n in ranked if n not in MARKUP_LANGS]
-    markup = [n for n in ranked if n in MARKUP_LANGS]
-    return programming[:programming_limit], markup[:markup_limit]
+    """Take the biggest languages, then split into programming vs markup"""
+    ranked = [name for name, _ in _by_size(lang_bytes)]
+    programming = [n for n in ranked if n not in MARKUP_LANGS][
+        :programming_limit
+    ]
+    markup = [n for n in ranked if n in MARKUP_LANGS][:markup_limit]
+    if sort == "name":
+        programming.sort(key=str.lower)
+        markup.sort(key=str.lower)
+    return programming, markup
 
 
 def _largest_remainder(weights: list[float], total: int) -> list[int]:

@@ -11,6 +11,7 @@ from .constants import (
     BLOCKS_NORMAL,
     COLUMN_X,
     LEADER,
+    LEGEND_LANGS,
     LINE_HEIGHT,
 )
 from .languages import OTHER, Segment, split_languages, usage_segments
@@ -108,10 +109,12 @@ def _language_value(names: list[str], theme: Theme) -> Children:
 
 
 def _legend(segments: list[Segment], theme: Theme) -> Children:
-    langs = [s for s in segments if s.name != OTHER][:3]
-    other = [s for s in segments if s.name == OTHER]
+    """Name the leading languages; everything unnamed collapses into Other"""
+    langs = [s for s in segments if s.name != OTHER][:LEGEND_LANGS]
+    rest = 100 - sum(seg.percent for seg in langs)
+    entries = [*langs, Segment(OTHER, 0, rest)] if rest > 0 else langs
     spans: Children = []
-    for i, seg in enumerate([*langs, *other]):
+    for i, seg in enumerate(entries):
         if i:
             spans.append(_cc("  "))
         spans.append(_colored("●", language_color(seg.name, theme)))
