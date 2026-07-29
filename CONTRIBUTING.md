@@ -68,7 +68,7 @@ mypy neocard tests
 pytest
 
 # Dependencies
-pip-audit -r requirements_prod.txt
+pip-audit --requirement requirements_dev.txt
 
 # GitHub Actions workflows
 actionlint
