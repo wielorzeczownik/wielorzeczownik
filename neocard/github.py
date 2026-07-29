@@ -2,14 +2,27 @@ from __future__ import annotations
 
 import os
 import urllib.request
+from typing import TYPE_CHECKING
 
 from github import Auth, Github
 from github.GithubException import GithubException
 
 from .models import Profile
 
+if TYPE_CHECKING:
+    from collections.abc import Mapping
+
 _TIMEOUT = 30
 _CREATED_AT_FMT = "%Y-%m-%dT%H:%M:%SZ"
+_TOKEN_VARS = ("GH_TOKEN", "GITHUB_TOKEN")
+
+
+def resolve_token(explicit: str | None, env: Mapping[str, str]) -> str | None:
+    """First non-empty of --token, GH_TOKEN, GITHUB_TOKEN, else anonymous."""
+    for candidate in (explicit, *(env.get(name) for name in _TOKEN_VARS)):
+        if candidate:
+            return candidate
+    return None
 
 
 class GitHubClient:
@@ -17,13 +30,14 @@ class GitHubClient:
 
     def __init__(self, user: str, token: str | None = None) -> None:
         self.user = user
-        resolved = (
-            token
-            or os.environ.get("GH_TOKEN")
-            or os.environ.get("GITHUB_TOKEN")
-        )
-        auth = Auth.Token(resolved) if resolved else None
-        self.gh = Github(auth=auth)
+        resolved = resolve_token(token, os.environ)
+        self.authenticated = resolved is not None
+        self.gh = Github(auth=Auth.Token(resolved) if resolved else None)
+
+    def __repr__(self) -> str:
+        """Hand-written: a derived repr would print the token in a traceback."""
+        state = "authenticated" if self.authenticated else "anonymous"
+        return f"GitHubClient(user={self.user!r}, auth={state})"
 
     @staticmethod
     def _download(url: str) -> bytes:
