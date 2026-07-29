@@ -1,23 +1,60 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["group:monorepos", "group:recommended"],
   "platformAutomerge": true,
   "automergeType": "pr",
   "semanticCommits": "enabled",
   "minimumReleaseAge": "3 days",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/workflows/[^/]+\\.yml$"],
+      "matchStrings": ["prettier@(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
+      "depNameTemplate": "prettier",
+      "datasourceTemplate": "npm"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/workflows/[^/]+\\.yml$"],
+      "matchStrings": ["pip-audit==(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
+      "depNameTemplate": "pip-audit",
+      "datasourceTemplate": "pypi"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["^\\.github/workflows/[^/]+\\.yml$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+) depName=(?<depName>\\S+)\\s+version: (?<currentValue>\\S+)"
+      ],
+      "versioningTemplate": "semver"
+    }
+  ],
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
     },
     {
-      "matchManagers": [
-        "github-actions"
-      ],
+      "matchManagers": ["github-actions"],
+      "pinDigests": true,
       "minimumReleaseAge": "7 days",
       "semanticCommitType": "ci"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "github actions"
+    },
+    {
+      "matchManagers": ["pip_requirements"],
+      "matchFileNames": ["requirements_prod.txt"],
+      "semanticCommitType": "build",
+      "groupName": "runtime dependencies"
+    },
+    {
+      "matchManagers": ["pip_requirements"],
+      "matchFileNames": ["requirements_lint.txt", "requirements_dev.txt"],
+      "groupName": "python tooling"
     }
   ]
 }
