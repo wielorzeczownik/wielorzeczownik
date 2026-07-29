@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+.DS_Store
+dist/
+neocard/assets/
+
+.github/security-advisory-issue.md
