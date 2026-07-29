@@ -2,7 +2,7 @@ name: Security Audit
 
 on:
   schedule:
-    - cron: "0 3 * * *"
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions: {}
@@ -28,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
-          python-version: "3.14"
+          python-version: '3.14'
 
       - name: Install pip-audit
         run: pip install --disable-pip-version-check pip-audit==2.10.1
@@ -75,4 +75,4 @@ jobs:
         uses: peter-evans/close-issue@05dff7ca07116e5707cfb3a3cd4af7bb5e43524c # v3.0.2
         with:
           issue-number: ${{ steps.advisory_issue.outputs.issue-number }}
-          comment: "`pip-audit` no longer reports advisories."
+          comment: '`pip-audit` no longer reports advisories.'
