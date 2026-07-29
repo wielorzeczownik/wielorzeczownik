@@ -48,7 +48,7 @@ git clone https://github.com/wielorzeczownik/wielorzeczownik.git
 cd wielorzeczownik
 python3 -m venv .venv
 source .venv/bin/activate
-pip install --require-hashes -r requirements_dev.lock
+pip install -r requirements_dev.txt
 python -m neocard --output-dir dist
 ```
 
@@ -68,7 +68,7 @@ mypy neocard tests
 pytest
 
 # Dependencies
-pip-audit --require-hashes -r requirements_prod.lock
+pip-audit -r requirements_prod.txt
 
 # GitHub Actions workflows
 actionlint
@@ -88,19 +88,18 @@ docker run --rm -v "$(pwd):/workdir" davidanson/markdownlint-cli2 "**/*.md"
 docker run --rm -v "$(pwd):/repo" -w /repo rhysd/actionlint:latest -color
 ```
 
-### Refreshing the lockfiles
+### Dependencies
 
-`requirements_*.txt` hold the direct dependencies; `requirements_*.lock` are
-generated from them and pin every transitive package to an exact version and
-hash. Never hand-edit a `.lock`. Regenerate all three after changing any
-`requirements_*.txt`:
+Requirements are split into three tiers, each including the one below it:
 
-```bash
-for tier in prod lint dev; do
-  uv pip compile --generate-hashes --python-version 3.10 \
-    "requirements_${tier}.txt" -o "requirements_${tier}.lock"
-done
-```
+| File                    | Holds                                 | Used by                    |
+| ----------------------- | ------------------------------------- | -------------------------- |
+| `requirements_prod.txt` | what the generator imports at runtime | the card workflow          |
+| `requirements_lint.txt` | Ruff                                  | the lint job               |
+| `requirements_dev.txt`  | mypy, pytest, type stubs              | local work and the CI jobs |
+
+Every entry is pinned to an exact version, and Renovate proposes the bumps.
+Add a new dependency to the narrowest tier that needs it.
 
 ## Commit style
 
@@ -123,7 +122,7 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/):
 Scope names the area, not the file: `github`, `svg`, `languages`, `avatar`,
 `deps`, `renovate`. Breaking changes carry `!` and a `BREAKING CHANGE:` footer.
 
-Explain **why** in the body, not what — the diff already says what. Wrap at
+Explain **why** in the body, not what – the diff already says what. Wrap at
 72–80 columns.
 
 ## Tests

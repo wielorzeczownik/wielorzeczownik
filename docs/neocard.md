@@ -6,14 +6,14 @@ and a light variant. A [scheduled workflow](../.github/workflows/neofetch.yml)
 runs it daily and publishes the result to the `output-neofetch` branch, which
 the profile [README.md](../README.md) embeds.
 
-Nothing about a person is hardcoded — it is all passed on the command line, so
+Nothing about a person is hardcoded – it is all passed on the command line, so
 the generator is reusable as-is.
 
 ## Usage
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
-pip install --require-hashes -r requirements_prod.lock
+pip install -r requirements_prod.txt
 python -m neocard --output-dir dist --user <your-username>
 ```
 
@@ -52,7 +52,7 @@ one run but not for repeated local iteration.
 | `--bar-top`            | `6`                                                  | Languages in the usage bar; the rest collapse into `Other`. `0` hides the bar.   |
 
 Rows sourced from the API (`uptime`, `host`, `kernel`, `website`) have no
-override — they are whatever the account says.
+override – they are whatever the account says.
 
 ## Where the card's content lives
 
@@ -62,5 +62,5 @@ what the card says is a workflow edit, not a code edit.
 
 ## See also
 
-- [CONTRIBUTING.md](../CONTRIBUTING.md) — development setup and every check
-- [SECURITY.md](../SECURITY.md) — how to report a vulnerability
+- [CONTRIBUTING.md](../CONTRIBUTING.md) – development setup and every check
+- [SECURITY.md](../SECURITY.md) – how to report a vulnerability

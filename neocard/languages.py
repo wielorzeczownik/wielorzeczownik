@@ -69,5 +69,5 @@ def usage_segments(
     counts = _largest_remainder([v / total for _, v in entries], cells)
     return [
         Segment(name=name, cells=count, percent=round(value / total * 100))
-        for (name, value), count in zip(entries, counts)
+        for (name, value), count in zip(entries, counts, strict=True)
     ]
