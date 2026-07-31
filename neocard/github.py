@@ -57,6 +57,20 @@ class GitHubClient:
             return 0
         return int(data.get("total_count", 0))
 
+    def _social_accounts(self) -> tuple[tuple[str, str], ...]:
+        """Linked social profiles. PyGithub has no wrapper for this route."""
+        try:
+            _, data = self.gh.requester.requestJsonAndCheck(
+                "GET", f"/users/{self.user}/social_accounts"
+            )
+        except GithubException:  # rate limit / transient API failure
+            return ()
+        return tuple(
+            (item.get("provider") or "generic", item["url"])
+            for item in data
+            if item.get("url")
+        )
+
     def fetch_profile(self) -> Profile:
         """Gather everything the card needs from the GitHub API."""
         user = self.gh.get_user(self.user)
@@ -87,5 +101,6 @@ class GitHubClient:
             company=(user.company or "").lstrip("@") or None,
             bio=user.bio or None,
             blog=user.blog or None,
+            socials=self._social_accounts(),
             lang_bytes=lang_bytes,
         )

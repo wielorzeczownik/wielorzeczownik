@@ -38,13 +38,14 @@ one run but not for repeated local iteration.
 | `-t`, `--token`        | `GH_TOKEN`, else `GITHUB_TOKEN`, else anonymous      | GitHub token. Prefer the environment variable — an argument is visible in `ps`.  |
 | `-o`, `--output-dir`   | current directory                                    | Directory to write `neofetch-dark.svg` and `neofetch-light.svg` into.            |
 | `--sections`           | `identity,system,languages,hobbies,stats`            | Sections to render, in order.                                                    |
-| `--fields`             | `uptime,host,kernel,website`                         | API-sourced identity rows to show, in order.                                     |
+| `--fields`             | `uptime,host,kernel,website,socials`                 | API-sourced identity rows to show, in order.                                     |
 | `--stats`              | `repos,stars,followers,following,commits,prs,issues` | Stats to show, in order.                                                         |
 | `--frameworks`         | row omitted                                          | Free text for the `Frameworks` row.                                              |
 | `--real`               | row omitted                                          | Free text for the `Real` (spoken languages) row.                                 |
 | `--hobbies-software`   | row omitted                                          | Free text for the `Software` row.                                                |
 | `--hobbies-hardware`   | row omitted                                          | Free text for the `Hardware` row.                                                |
 | `--system LABEL=VALUE` | section empty                                        | One line of the System section. Repeatable.                                      |
+| `--social PROVIDER=URL`| API accounts only                                    | Extra socials bar entry, appended to the linked accounts. Repeatable.            |
 | `--icon LABEL=GLYPH`   | built-in icon set                                    | Override a row's Nerd Font icon, as a literal glyph or `U+F108`. Repeatable.     |
 | `--language-sort`      | `size`                                               | `size` orders by bytes, `name` alphabetically. Applies to the lists and the bar. |
 | `--programming-limit`  | `4`                                                  | Programming languages listed.                                                    |
@@ -53,6 +54,24 @@ one run but not for repeated local iteration.
 
 Rows sourced from the API (`uptime`, `host`, `kernel`, `website`) have no
 override – they are whatever the account says.
+
+`socials` is not a key/value row but a bar of the profile's linked social
+accounts, laid out like the GitHub Stats rows and wrapping every three
+entries. It renders an icon plus the handle the link ends in; the accounts
+come from GitHub's own settings, so adding one there is enough.
+
+`--social` is the one exception to API rows having no override – it appends
+entries GitHub cannot store, and a URL already linked on the profile is not
+repeated:
+
+```sh
+neocard --social "discord=https://discord.gg/xyz" --icon "discord=U+F066F"
+```
+
+`--icon` is keyed by the provider slug for these, so `--icon "twitter=U+F31A"`
+swaps the bird for the X glyph. A provider without a built-in icon falls back
+to a link glyph. Dropping `socials` from `--fields` hides the bar entirely,
+including the `--social` entries.
 
 ## Where the card's content lives
 

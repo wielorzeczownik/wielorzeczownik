@@ -13,6 +13,9 @@ from .constants import (
     LEADER,
     LEGEND_LANGS,
     LINE_HEIGHT,
+    SOCIAL_FALLBACK_ICON,
+    SOCIAL_ICONS,
+    SOCIALS_PER_ROW,
 )
 from .languages import OTHER, Segment, split_languages, usage_segments
 from .time_utils import account_age
@@ -131,6 +134,49 @@ def _stats(pairs: list[tuple[str, int]], icons: dict[str, str]) -> Children:
     return spans
 
 
+def _handle(url: str) -> str:
+    """The account name a social URL ends in, without scheme or host"""
+    path = url.split("://", 1)[-1].strip("/")
+    _, _, tail = path.partition("/")
+    return tail.rsplit("/", 1)[-1] or path
+
+
+def _social_bar(
+    pairs: tuple[tuple[str, str], ...], icons: dict[str, str]
+) -> Children:
+    """One row of the socials bar, laid out like the GitHub Stats rows"""
+    spans: Children = []
+    for i, (provider, url) in enumerate(pairs):
+        if i:
+            spans.append(_cc(" | "))
+        glyph = icons.get(provider) or SOCIAL_ICONS.get(
+            provider, SOCIAL_FALLBACK_ICON
+        )
+        spans += [_key(f"{glyph} "), _val(_handle(url))]
+    return spans
+
+
+def _merge_socials(
+    api: tuple[tuple[str, str], ...], manual: tuple[tuple[str, str], ...]
+) -> tuple[tuple[str, str], ...]:
+    """CLI links extend the API's; a URL listed twice keeps its first slot"""
+    seen: set[str] = set()
+    merged: list[tuple[str, str]] = []
+    for provider, url in (*api, *manual):
+        if url not in seen:
+            seen.add(url)
+            merged.append((provider, url))
+    return tuple(merged)
+
+
+def _socials(profile: Profile, settings: Settings) -> list[Children]:
+    pairs = _merge_socials(profile.socials, settings.socials)
+    return [
+        _social_bar(pairs[start : start + SOCIALS_PER_ROW], settings.icons)
+        for start in range(0, len(pairs), SOCIALS_PER_ROW)
+    ]
+
+
 def _title(profile: Profile) -> Children:
     dashes = "-" + "—" * 39 + "-—-"
     return [TSpan(f"{profile.user}@github"), _cc(f" {dashes}")]
@@ -139,6 +185,9 @@ def _title(profile: Profile) -> Children:
 def _identity(profile: Profile, settings: Settings) -> list[Children]:
     lines: list[Children] = []
     for name in settings.fields:
+        if name == "socials":  # a bar, not a key/value row
+            lines += _socials(profile, settings)
+            continue
         entry = _IDENTITY.get(name)
         if entry is None:
             continue

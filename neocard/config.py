@@ -8,7 +8,7 @@ below are structural fallbacks that keep a bare ``python -m neocard`` useful.
 DEFAULT_USER = "wielorzeczownik"
 
 # Which API-sourced identity rows to show, in order
-DEFAULT_FIELDS = ["uptime", "host", "kernel", "website"]
+DEFAULT_FIELDS = ["uptime", "host", "kernel", "website", "socials"]
 
 # Which stats to show, in order
 DEFAULT_STATS = [

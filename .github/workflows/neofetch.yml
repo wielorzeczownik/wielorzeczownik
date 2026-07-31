@@ -50,7 +50,7 @@ jobs:
           python -m neocard --output-dir dist \
             --user "${{ github.repository_owner }}" \
             --sections identity,system,languages,hobbies,stats \
-            --fields uptime,host,kernel,website \
+            --fields uptime,host,kernel,website,socials \
             --stats repos,stars,followers,following,commits,prs,issues \
             --language-sort size \
             --frameworks "React, Vue, Symfony, Phalcon" \

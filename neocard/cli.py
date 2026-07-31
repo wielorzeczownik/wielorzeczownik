@@ -52,6 +52,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="System section line, repeatable",
     )
     content.add_argument(
+        "--social",
+        action="append",
+        metavar="PROVIDER=URL",
+        help="Extra socials bar entry, repeatable. GitHub only knows a few "
+        "platforms, e.g. --social 'discord=https://discord.gg/xyz'",
+    )
+    content.add_argument(
         "--icon",
         action="append",
         metavar="LABEL=GLYPH",
@@ -68,7 +75,7 @@ def build_parser() -> argparse.ArgumentParser:
     layout.add_argument(
         "--fields",
         metavar="A,B,...",
-        help="API rows to show, in order (uptime,host,kernel,website)",
+        help="API rows to show, in order (uptime,host,kernel,website,socials)",
     )
     layout.add_argument(
         "--stats",
@@ -131,6 +138,16 @@ def _icons(args: argparse.Namespace) -> dict[str, str]:
     return icons
 
 
+def _social_links(args: argparse.Namespace) -> tuple[tuple[str, str], ...]:
+    """Provider/URL pairs, ordered as given, appended to the API's own"""
+    links: list[tuple[str, str]] = []
+    for item in args.social or []:
+        provider, sep, url = item.partition("=")
+        if sep and url.strip():
+            links.append((provider.strip().lower(), url.strip()))
+    return tuple(links)
+
+
 def _jokes(args: argparse.Namespace) -> dict[str, str]:
     jokes: dict[str, str] = {}
     for item in args.system or []:
@@ -148,6 +165,7 @@ def main(argv: list[str] | None = None) -> int:
     settings = Settings(
         manual=_manual(args),
         jokes=_jokes(args),
+        socials=_social_links(args),
         icons=_icons(args),
         sections=_csv(args.sections, DEFAULT_SECTIONS),
         fields=_csv(args.fields, DEFAULT_FIELDS),

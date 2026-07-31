@@ -78,6 +78,24 @@ ICONS: dict[str, str] = {
     "Issues": "",  # issue
 }
 
+# Nerd Font icon per social-account provider slug
+SOCIAL_ICONS: dict[str, str] = {
+    "twitter": "",  # twitter
+    "mastodon": "",  # mastodon
+    "linkedin": "",  # linkedin
+    "youtube": "",  # youtube
+    "twitch": "",  # twitch
+    "instagram": "",  # instagram
+    "facebook": "",  # facebook
+    "reddit": "",  # reddit
+}
+# GitHub reports "generic" for a plain URL, and unknown providers keep
+# appearing as its platform list grows
+SOCIAL_FALLBACK_ICON = ""  # link
+
+# Social entries per row before the bar wraps
+SOCIALS_PER_ROW = 3
+
 # neofetch ANSI color blocks
 BLOCKS_NORMAL = (
     "#484f58",

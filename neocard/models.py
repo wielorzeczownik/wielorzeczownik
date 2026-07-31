@@ -37,6 +37,7 @@ class Profile:
     company: str | None = None
     bio: str | None = None
     blog: str | None = None
+    socials: tuple[tuple[str, str], ...] = ()
     lang_bytes: dict[str, int] = field(default_factory=dict)
 
 
@@ -46,6 +47,7 @@ class Settings:
 
     manual: dict[str, str] = field(default_factory=dict)
     jokes: dict[str, str] = field(default_factory=dict)
+    socials: tuple[tuple[str, str], ...] = ()
     icons: dict[str, str] = field(default_factory=dict)
     sections: list[str] = field(default_factory=list)
     fields: list[str] = field(default_factory=list)

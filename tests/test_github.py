@@ -1,10 +1,26 @@
 from __future__ import annotations
 
+from typing import Any
+
 import pytest
+from github.GithubException import GithubException
 
 from neocard.github import GitHubClient, resolve_token
 
 SENTINEL = "ghp_notarealvaluebutlongenoughtolookreal"
+
+
+def _client_returning(payload: object) -> GitHubClient:
+    """A client whose social-accounts route answers with payload."""
+    client = GitHubClient("wielorzeczownik", SENTINEL)
+
+    def fake(*_args: Any, **_kwargs: Any) -> tuple[dict[str, str], object]:
+        if isinstance(payload, Exception):
+            raise payload
+        return {}, payload
+
+    client.gh.requester.requestJsonAndCheck = fake  # type: ignore[method-assign]
+    return client
 
 
 @pytest.mark.parametrize(
@@ -45,3 +61,37 @@ def test_client_reports_whether_it_found_a_token(
         monkeypatch.delenv(name, raising=False)
     assert GitHubClient("wielorzeczownik", SENTINEL).authenticated
     assert not GitHubClient("wielorzeczownik", "").authenticated
+
+
+def test_social_accounts_are_kept_in_profile_order() -> None:
+    client = _client_returning(
+        [
+            {"provider": "twitter", "url": "https://twitter.com/nick"},
+            {"provider": "youtube", "url": "https://youtube.com/@nick"},
+        ]
+    )
+    assert client._social_accounts() == (  # noqa: SLF001
+        ("twitter", "https://twitter.com/nick"),
+        ("youtube", "https://youtube.com/@nick"),
+    )
+
+
+def test_social_accounts_tolerate_a_missing_provider_or_url() -> None:
+    """A tuple, not a dict: "generic" repeats once per plain URL."""
+    client = _client_returning(
+        [
+            {"url": "https://furryunicorn.com"},
+            {"provider": "generic", "url": "https://example.com"},
+            {"provider": "twitter"},
+        ]
+    )
+    assert client._social_accounts() == (  # noqa: SLF001
+        ("generic", "https://furryunicorn.com"),
+        ("generic", "https://example.com"),
+    )
+
+
+def test_social_accounts_survive_a_rate_limited_api() -> None:
+    """The card must still render when this one extra call is refused."""
+    client = _client_returning(GithubException(403, "rate limited", None))
+    assert client._social_accounts() == ()  # noqa: SLF001

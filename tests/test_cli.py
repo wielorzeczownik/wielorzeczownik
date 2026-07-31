@@ -2,7 +2,15 @@ from __future__ import annotations
 
 import pytest
 
-from neocard.cli import _csv, _glyph, _icons, _jokes, _manual, build_parser
+from neocard.cli import (
+    _csv,
+    _glyph,
+    _icons,
+    _jokes,
+    _manual,
+    _social_links,
+    build_parser,
+)
 from neocard.constants import ICONS
 
 # The Nerd Font display glyph, written as a codepoint so the source stays
@@ -74,6 +82,27 @@ def test_jokes_and_icons_ignore_a_line_without_a_separator(item: str) -> None:
     args = build_parser().parse_args(["--system", item, "--icon", item])
     assert _jokes(args) == {}
     assert _icons(args) == dict(ICONS)
+
+
+def test_social_links_keep_the_order_they_were_passed_in() -> None:
+    args = build_parser().parse_args(
+        [
+            "--social",
+            "discord=https://discord.gg/xyz",
+            "--social",
+            " Bluesky = https://bsky.app/profile/nick ",
+        ]
+    )
+    assert _social_links(args) == (
+        ("discord", "https://discord.gg/xyz"),
+        ("bluesky", "https://bsky.app/profile/nick"),
+    )
+
+
+@pytest.mark.parametrize("item", ["noseparator", "", "discord=", "discord= "])
+def test_social_links_ignore_an_entry_without_a_url(item: str) -> None:
+    args = build_parser().parse_args(["--social", item])
+    assert _social_links(args) == ()
 
 
 def test_manual_omits_the_rows_that_were_not_given() -> None:
