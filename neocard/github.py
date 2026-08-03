@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import sys
 import urllib.request
 from typing import TYPE_CHECKING
 
@@ -13,8 +14,15 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
 _TIMEOUT = 30
-_CREATED_AT_FMT = "%Y-%m-%dT%H:%M:%SZ"
 _TOKEN_VARS = ("GH_TOKEN", "GITHUB_TOKEN")
+
+
+def _warn(what: str, error: GithubException) -> None:
+    """A refused optional call still renders a card, but never silently"""
+    print(
+        f"[WARN] {what} unavailable ({error.status}), rendering without it",
+        file=sys.stderr,
+    )
 
 
 def resolve_token(explicit: str | None, env: Mapping[str, str]) -> str | None:
@@ -53,7 +61,8 @@ class GitHubClient:
                 endpoint,
                 parameters={"q": query, "per_page": 1},
             )
-        except GithubException:  # rate limit / transient API failure
+        except GithubException as error:  # rate limit / transient API failure
+            _warn(f"search '{query}'", error)
             return 0
         return int(data.get("total_count", 0))
 
@@ -63,7 +72,8 @@ class GitHubClient:
             _, data = self.gh.requester.requestJsonAndCheck(
                 "GET", f"/users/{self.user}/social_accounts"
             )
-        except GithubException:  # rate limit / transient API failure
+        except GithubException as error:  # rate limit / transient API failure
+            _warn("social accounts", error)
             return ()
         return tuple(
             (item.get("provider") or "generic", item["url"])
@@ -83,7 +93,7 @@ class GitHubClient:
                 lang_bytes[name] = lang_bytes.get(name, 0) + int(size)
         return Profile(
             user=self.user,
-            created_at=user.created_at.strftime(_CREATED_AT_FMT),
+            created_at=user.created_at,
             public_repos=user.public_repos,
             followers=user.followers,
             following=user.following,
