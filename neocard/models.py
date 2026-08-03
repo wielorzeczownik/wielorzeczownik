@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from datetime import datetime
 
 
 @dataclass(frozen=True)
@@ -25,7 +29,7 @@ class Profile:
     """Everything pulled from the GitHub API for a single user"""
 
     user: str
-    created_at: str
+    created_at: datetime
     public_repos: int
     followers: int
     following: int
@@ -43,16 +47,16 @@ class Profile:
 
 @dataclass(frozen=True)
 class Settings:
-    """User-tunable content and parameters"""
+    """User-tunable content and parameters."""
 
-    manual: dict[str, str] = field(default_factory=dict)
-    jokes: dict[str, str] = field(default_factory=dict)
-    socials: tuple[tuple[str, str], ...] = ()
-    icons: dict[str, str] = field(default_factory=dict)
-    sections: list[str] = field(default_factory=list)
-    fields: list[str] = field(default_factory=list)
-    stats: list[str] = field(default_factory=list)
-    language_sort: str = "size"
-    programming_limit: int = 4
-    markup_limit: int = 4
-    bar_top: int = 6
+    manual: dict[str, str]
+    jokes: dict[str, str]
+    socials: tuple[tuple[str, str], ...]
+    icons: dict[str, str]
+    sections: list[str]
+    fields: list[str]
+    stats: list[str]
+    language_sort: str
+    programming_limit: int
+    markup_limit: int
+    bar_top: int

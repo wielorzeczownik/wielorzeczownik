@@ -6,12 +6,9 @@ import pytest
 
 from neocard.time_utils import _plural, account_age
 
-_FMT = "%Y-%m-%dT%H:%M:%SZ"
 
-
-def _ago(days: int) -> str:
-    when = datetime.now(timezone.utc) - timedelta(days=days)
-    return when.strftime(_FMT)
+def _ago(days: int) -> datetime:
+    return datetime.now(timezone.utc) - timedelta(days=days)
 
 
 @pytest.mark.parametrize(

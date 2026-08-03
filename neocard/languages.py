@@ -22,9 +22,9 @@ def _by_size(lang_bytes: dict[str, int]) -> list[tuple[str, int]]:
 
 def split_languages(
     lang_bytes: dict[str, int],
-    programming_limit: int = 4,
-    markup_limit: int = 4,
-    sort: str = "size",
+    programming_limit: int,
+    markup_limit: int,
+    sort: str,
 ) -> tuple[list[str], list[str]]:
     """Take the biggest languages, then split into programming vs markup"""
     ranked = [name for name, _ in _by_size(lang_bytes)]
@@ -54,8 +54,8 @@ def _largest_remainder(weights: list[float], total: int) -> list[int]:
 def usage_segments(
     lang_bytes: dict[str, int],
     cells: int,
-    top: int = 6,
-    sort: str = "size",
+    top: int,
+    sort: str,
 ) -> list[Segment]:
     """Full-width bar segments for the biggest languages plus an Other slice"""
     total = sum(lang_bytes.values())

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import sys
 from pathlib import Path
 
 from .config import (
@@ -157,7 +158,7 @@ def _jokes(args: argparse.Namespace) -> dict[str, str]:
     return jokes
 
 
-def main(argv: list[str] | None = None) -> int:
+def _run(argv: list[str] | None) -> int:
     args = build_parser().parse_args(argv)
     user = (
         args.user or os.environ.get("GITHUB_REPOSITORY_OWNER") or DEFAULT_USER
@@ -182,3 +183,15 @@ def main(argv: list[str] | None = None) -> int:
         path.write_text(render(profile, theme, settings), encoding="utf-8")
         print(f"wrote {path}")
     return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Entry point for both ``python -m neocard`` and the ``neocard`` script"""
+    try:
+        return _run(argv)
+    except KeyboardInterrupt:
+        print("\nInterrupted.", file=sys.stderr)
+        return 130
+    except (OSError, ValueError) as error:  # network, disk, bad --icon glyph
+        print(f"[ERROR] {error}", file=sys.stderr)
+        return 1
