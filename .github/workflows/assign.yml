@@ -18,15 +18,8 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - name: Assign the pull request to the maintainer
-        if: ${{ github.event_name == 'pull_request_target' }}
+      - name: Assign to the maintainer
         uses: pozil/auto-assign-issue@af6beea6bdf1e8eb373f061c5bc168681fc6d011 # v4.0.1
         with:
           assignees: ${{ github.repository_owner }}
-          issueNumber: ${{ github.event.pull_request.number }}
-
-      - name: Assign the issue to the maintainer
-        if: ${{ github.event_name == 'issues' }}
-        uses: pozil/auto-assign-issue@af6beea6bdf1e8eb373f061c5bc168681fc6d011 # v4.0.1
-        with:
-          assignees: ${{ github.repository_owner }}
+          issueNumber: ${{ github.event.pull_request.number || github.event.issue.number }}
