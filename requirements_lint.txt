@@ -1,2 +1,2 @@
 -r requirements_prod.txt
-ruff==0.16.7
+ruff==0.16.8
