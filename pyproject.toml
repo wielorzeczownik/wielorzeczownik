@@ -5,16 +5,25 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "neocard"
 version = "0.1.0"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE", "NOTICE.md", "neocard/assets/OFL.txt"]
 dependencies = [
-  "Pillow",
-  "svgwrite",
-  "PyGithub",
-  "python-dateutil",
-  "fonttools",
-  "brotli",
+  "Pillow==12.3.0",
+  "svgwrite==1.4.3",
+  "PyGithub==2.10.0",
+  "python-dateutil==2.9.0.post0",
+  "fonttools==4.66.1",
+  "brotli==1.2.0",
+]
+
+[dependency-groups]
+lint = ["ruff==0.17.0"]
+dev = [
+  { include-group = "lint" },
+  "mypy==2.4.0",
+  "pytest==9.1.1",
+  "types-python-dateutil==2.9.0.20260807",
 ]
 
 [project.scripts]
@@ -28,7 +37,7 @@ neocard = ["assets/*.woff2", "assets/OFL.txt"]
 
 [tool.ruff]
 line-length = 80
-target-version = "py310"
+target-version = "py311"
 extend-exclude = [
   ".git",
   ".mypy_cache",
@@ -73,7 +82,7 @@ testpaths = ["tests"]
 addopts = "--strict-markers --strict-config"
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 strict = true
 ignore_missing_imports = true
 warn_unreachable = true
