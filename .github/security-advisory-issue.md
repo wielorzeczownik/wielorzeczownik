@@ -7,8 +7,4 @@ labels: security advisory
 proposes version bumps on its own schedule, so these need a deliberate bump in
 `requirements_prod.txt` or `requirements_dev.txt`.
 
-## Audit output
-
-```text
 {{ env.AUDIT_REPORT }}
-```

@@ -37,16 +37,13 @@ jobs:
         id: audit
         shell: bash
         run: |
-          set -uo pipefail
-          if pip-audit --requirement requirements_dev.txt 2>&1 | tee audit.log; then
-            echo "unresolved=false" >>"$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "unresolved=true" >>"$GITHUB_OUTPUT"
+          unresolved=false
+          report=$(bash scripts/pip-audit-report.sh --requirement requirements_dev.txt) || unresolved=true
           delimiter="report-$(date +%s%N)"
           {
+            echo "unresolved=${unresolved}"
             echo "report<<${delimiter}"
-            cat audit.log
+            echo "${report}"
             echo "${delimiter}"
           } >>"$GITHUB_OUTPUT"
 
