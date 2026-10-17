@@ -46,14 +46,12 @@ the card says is a workflow edit, not a code edit.
 ```bash
 git clone https://github.com/wielorzeczownik/wielorzeczownik.git
 cd wielorzeczownik
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements_dev.txt
-python -m neocard --output-dir dist
+uv sync
+uv run python -m neocard --output-dir dist
 ```
 
 An unauthenticated run works but is limited to 60 API requests per hour. Export
-`GH_TOKEN` with a token that has no scopes to raise that limit; the tool needs
+`GH_TOKEN` with a token that has no scopes to raise that limit. The tool needs
 no permissions beyond reading public data.
 
 ## Running checks locally
@@ -62,13 +60,13 @@ no permissions beyond reading public data.
 
 ```bash
 # Python
-ruff format --check .
-ruff check .
-mypy neocard tests
-pytest
+uv run ruff format --check .
+uv run ruff check .
+uv run mypy neocard tests
+uv run pytest
 
 # Dependencies
-pip-audit --requirement requirements_dev.txt
+bash scripts/pip-audit-report.sh --disable-pip --requirement <(uv export --frozen --all-groups --no-emit-project --format requirements-txt)
 
 # GitHub Actions workflows
 actionlint
@@ -90,16 +88,18 @@ docker run --rm -v "$(pwd):/repo" -w /repo rhysd/actionlint:latest -color
 
 ### Dependencies
 
-Requirements are split into three tiers, each including the one below it:
+Dependencies live in `pyproject.toml`, in three tiers:
 
-| File                    | Holds                                 | Used by                    |
-| ----------------------- | ------------------------------------- | -------------------------- |
-| `requirements_prod.txt` | what the generator imports at runtime | the card workflow          |
-| `requirements_lint.txt` | Ruff                                  | the lint job               |
-| `requirements_dev.txt`  | mypy, pytest, type stubs              | local work and the CI jobs |
+| Where                        | Holds                                 | Used by                    |
+| ---------------------------- | ------------------------------------- | -------------------------- |
+| `[project] dependencies`     | what the generator imports at runtime | the card workflow          |
+| `[dependency-groups]` `lint` | Ruff                                  | the lint step              |
+| `[dependency-groups]` `dev`  | mypy, pytest, type stubs              | local work and the CI jobs |
 
-Every entry is pinned to an exact version, and Renovate proposes the bumps.
-Add a new dependency to the narrowest tier that needs it.
+`uv.lock` pins every package, including transitive ones, and CI installs with
+`uv sync --locked`, so a lockfile out of step with `pyproject.toml` fails the
+build. Add a new dependency to the narrowest tier that needs it with `uv add`
+(or `uv add --group dev`), and Renovate proposes the bumps.
 
 ## Commit style
 

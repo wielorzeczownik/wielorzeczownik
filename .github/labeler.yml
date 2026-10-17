@@ -7,7 +7,7 @@ documentation:
 dependencies:
   - changed-files:
       - any-glob-to-any-file:
-          - 'requirements_*.txt'
+          - 'uv.lock'
           - 'pyproject.toml'
           - 'renovate.json'
 

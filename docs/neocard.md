@@ -12,9 +12,8 @@ the generator is reusable as-is.
 ## Usage
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements_prod.txt
-python -m neocard --output-dir dist --user <your-username>
+uv sync --no-dev
+uv run python -m neocard --output-dir dist --user <your-username>
 ```
 
 This writes `dist/neofetch-dark.svg` and `dist/neofetch-light.svg`.

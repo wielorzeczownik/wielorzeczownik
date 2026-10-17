@@ -53,15 +53,18 @@
       "groupName": "github actions"
     },
     {
-      "matchManagers": ["pip_requirements"],
-      "matchFileNames": ["requirements_prod.txt"],
+      "matchManagers": ["pep621"],
+      "matchDepTypes": ["project.dependencies"],
       "semanticCommitType": "build",
       "groupName": "runtime dependencies"
     },
     {
-      "matchManagers": ["pip_requirements"],
-      "matchFileNames": ["requirements_lint.txt", "requirements_dev.txt"],
+      "matchManagers": ["pep621"],
+      "matchDepTypes": ["dependency-groups"],
       "groupName": "python tooling"
     }
-  ]
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }
