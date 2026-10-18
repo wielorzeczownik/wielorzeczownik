@@ -65,9 +65,6 @@ uv run ruff check .
 uv run mypy neocard tests
 uv run pytest
 
-# Dependencies
-bash scripts/pip-audit-report.sh --disable-pip --requirement <(uv export --frozen --all-groups --no-emit-project --format requirements-txt)
-
 # GitHub Actions workflows
 actionlint
 
@@ -140,8 +137,8 @@ does **not** appear.
 
 - Keep pull requests focused on a single concern.
 - Reference any related issue in the description.
-- All CI checks must pass: Ruff, mypy, pytest, dependency audit, workflow lint,
-  Markdown lint and Prettier.
+- All CI checks must pass: Ruff, mypy, pytest, workflow lint, Markdown lint and
+  Prettier.
 
 ## Reporting bugs
 
