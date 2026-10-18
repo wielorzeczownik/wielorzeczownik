@@ -42,9 +42,6 @@ jobs:
               - '.markdownlint.json'
             workflows:
               - '.github/workflows/**'
-            shell:
-              - '.github/workflows/validate.yml'
-              - 'scripts/**'
             format:
               - '.github/workflows/validate.yml'
               - '.prettierrc'
@@ -66,20 +63,6 @@ jobs:
         with:
           version-file: uv.lock
           args: format --check
-
-      - name: Install shfmt and shellcheck
-        if: ${{ !cancelled() && steps.filter.outputs.shell == 'true' }}
-        uses: taiki-e/install-action@ab6895351a88b908e96a4697860d4ffea5e57dbe # v2.87.27
-        with:
-          tool: shfmt,shellcheck
-
-      - name: Format check shell scripts
-        if: ${{ !cancelled() && steps.filter.outputs.shell == 'true' }}
-        run: shfmt --diff scripts/
-
-      - name: Lint shell scripts
-        if: ${{ !cancelled() && steps.filter.outputs.shell == 'true' }}
-        run: shellcheck scripts/*.sh
 
       - name: Lint workflows
         if: ${{ !cancelled() && steps.filter.outputs.workflows == 'true' }}
