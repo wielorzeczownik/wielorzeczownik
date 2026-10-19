@@ -21,6 +21,10 @@ concurrency:
   group: neofetch-card
   cancel-in-progress: false
 
+env:
+  # renovate: datasource=github-releases depName=astral-sh/uv
+  UV_VERSION: 0.13.1
+
 jobs:
   update:
     name: Regenerate and publish the card
@@ -36,8 +40,7 @@ jobs:
       - name: Set up uv
         uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
         with:
-          # renovate: datasource=github-releases depName=astral-sh/uv
-          version: 0.13.1
+          version: ${{ env.UV_VERSION }}
           python-version: '3.14'
 
       - name: Install dependencies
