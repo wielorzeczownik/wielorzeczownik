@@ -5,7 +5,6 @@
     {
       "matchManagers": ["pep621"],
       "matchDepTypes": ["project.dependencies"],
-      "semanticCommitType": "build",
       "groupName": "runtime dependencies"
     },
     {
