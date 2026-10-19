@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-lint = ["ruff==0.17.0"]
+lint = ["ruff==0.17.1"]
 dev = [
   { include-group = "lint" },
   "mypy==2.4.0",
