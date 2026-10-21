@@ -9,7 +9,7 @@ requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE", "NOTICE.md", "neocard/assets/OFL.txt"]
 dependencies = [
-  "Pillow==12.3.0",
+  "Pillow==13.0.0",
   "svgwrite==1.4.3",
   "PyGithub==2.10.0",
   "python-dateutil==2.9.0.post0",
