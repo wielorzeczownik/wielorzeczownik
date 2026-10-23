@@ -14,7 +14,7 @@ dependencies = [
   "PyGithub==2.10.0",
   "python-dateutil==2.9.0.post0",
   "fonttools==4.67.0",
-  "brotli==1.2.0",
+  "brotli==1.2.1",
 ]
 
 [dependency-groups]
