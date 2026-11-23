@@ -1,6 +1,6 @@
 # Third-party notices
 
-`neocard` itself is MIT licensed – see [LICENSE](LICENSE). It bundles and
+`neocard` itself is MIT licensed, see [LICENSE](LICENSE). It bundles and
 redistributes third-party font software, listed below with the licenses that
 apply to it.
 

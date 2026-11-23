@@ -6,7 +6,7 @@ and a light variant. A [scheduled workflow](../.github/workflows/neofetch.yml)
 runs it daily and publishes the result to the `output-neofetch` branch, which
 the profile [README.md](../README.md) embeds.
 
-Nothing about a person is hardcoded – it is all passed on the command line, so
+Nothing about a person is hardcoded. It is all passed on the command line, so
 the generator is reusable as-is.
 
 ## Usage
@@ -34,7 +34,7 @@ one run but not for repeated local iteration.
 | Flag                    | Default                                              | Meaning                                                                          |
 | ----------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `-u`, `--user`          | `GITHUB_REPOSITORY_OWNER`, else `wielorzeczownik`    | Account to render.                                                               |
-| `-t`, `--token`         | `GH_TOKEN`, else `GITHUB_TOKEN`, else anonymous      | GitHub token. Prefer the environment variable — an argument is visible in `ps`.  |
+| `-t`, `--token`         | `GH_TOKEN`, else `GITHUB_TOKEN`, else anonymous      | GitHub token. Prefer the environment variable, an argument is visible in `ps`.   |
 | `-o`, `--output-dir`    | current directory                                    | Directory to write `neofetch-dark.svg` and `neofetch-light.svg` into.            |
 | `--sections`            | `identity,system,languages,hobbies,stats`            | Sections to render, in order.                                                    |
 | `--fields`              | `uptime,host,kernel,website,socials`                 | API-sourced identity rows to show, in order.                                     |
@@ -52,14 +52,14 @@ one run but not for repeated local iteration.
 | `--bar-top`             | `6`                                                  | Languages in the usage bar; the rest collapse into `Other`. `0` hides the bar.   |
 
 Rows sourced from the API (`uptime`, `host`, `kernel`, `website`) have no
-override – they are whatever the account says.
+override, they are whatever the account says.
 
 `socials` is not a key/value row but a bar of the profile's linked social
 accounts, laid out like the GitHub Stats rows and wrapping every three
 entries. It renders an icon plus the handle the link ends in; the accounts
 come from GitHub's own settings, so adding one there is enough.
 
-`--social` is the one exception to API rows having no override – it appends
+`--social` is the one exception to API rows having no override. It appends
 entries GitHub cannot store, and a URL already linked on the profile is not
 repeated:
 
@@ -80,5 +80,5 @@ what the card says is a workflow edit, not a code edit.
 
 ## See also
 
-- [CONTRIBUTING.md](../CONTRIBUTING.md) – development setup and every check
-- [SECURITY.md](../SECURITY.md) – how to report a vulnerability
+- [CONTRIBUTING.md](../CONTRIBUTING.md): development setup and every check
+- [SECURITY.md](../SECURITY.md): how to report a vulnerability
